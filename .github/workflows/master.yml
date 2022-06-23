@@ -3,10 +3,10 @@
 name: CI-CD pipeline to AWS
 env:
   EB_S3_BUCKET_NAME: "ci-cd-django-test"
-  EB_APPLICATION_NAME: "Demo"
-  EB_ENVIRONMENT_NAME: "Demo-env"
+  EB_APPLICATION_NAME: "edoc"
+  EB_ENVIRONMENT_NAME: "edoc-env"
   DEPLOY_PACKAGE_NAME: "django-app-${{ github.sha }}.zip"
-  AWS_REGION_NAME: "eu-central-1"
+  AWS_REGION_NAME: "us-east-1"
 
 on:
   push:
