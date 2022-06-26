@@ -49,6 +49,6 @@ jobs:
           environment_name: Edoc-env
           
           
-          version_label: 1
+          version_label: 2
           region: "us-east-1"
           deployment_package: deploy.zip
