@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{%block content %}
+
+<div style="margin-left:250px; margin-top:70px; margin-right: 250px; ">
+<table class="table table-striped"    >
+  <thead>
+    <tr>
+     
+      <th scope="col">Document No</th>
+      <th scope="col">Document Name</th>
+     
+
+        
+        <th scope="col">Remarks</th>
+       <th scope="col">Actions</th>
+       
+
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for doc in docs %}
+    <tr>
+      
+      <td>{{doc.DocumentSrNo}}</td>
+
+      <td>{{doc.DocumentName}}</td>
+    
+   
+     
+      <td>{{doc.Remarks}}</td>
+
+      <td >
+        <a href="{{doc.file.url}}" target="_blank" download="{{doc.file}}" class="btn btn-primary" >
+         Download
+        </a>
+        <a href="/delete/{{doc.id}}" target="_blank" class="btn btn-danger" >
+          Delete
+          
+         </a>
+
+      </td>
+     
+    
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+<div aria-label="..." class="d-flex justify-content-center">
+{% if docs.has_other_pages %}
+  <ul class="pagination">
+    {% if docs.has_previous %}
+      <li><a class="page-link" href="?page={{ docs.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="disabled"><span class="page-link">Previous</span></li>
+    {% endif %}
+    {% for i in docs.paginator.page_range %}
+      {% if docs.number == i %}
+        <li class="page-item active" ><span class="page-link">{{ i }} <span class="sr-only"></span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if docs.has_next %}
+      <li><a class="page-link" href="?page={{ docs.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="disabled"><span class="page-link">Next</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+</div>
+
+
+{% endblock %}

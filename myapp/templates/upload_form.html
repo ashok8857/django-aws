@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{%block content %}
+<head xmlns="http://www.w3.org/1999/html">
+    <style>
+    .f{
+    margin-left:300px;
+    margin-right:300px;
+    }
+
+    .d {
+  width: 500px;
+  border: 2px solid green;
+  padding: 50px;
+   margin: auto;
+}
+</style>
+</head>
+    <body>
+    <div class="jumbotron" style="margin-left:300px; margin-right:300px; margin-top: 70px;">
+        <div class="d">
+            <h4>Please Enter Document Details</h4>
+
+            <form method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}  
+                    {{ form|crispy}}
+                    
+                    <button type="submit" class="btn btn-primary">Save</button>
+            </form>  
+        </div>
+    </div>
+    </body>
+{% endblock %}
